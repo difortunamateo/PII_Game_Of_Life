@@ -1,42 +1,42 @@
 using System;
 using System.Text;
 using System.Threading;
+using Ucu.Poo.GameOfLife;
 
 public class PrintBoard
 {
-    private Board _board;
-    private int _delay;
+    private Board board;
+    private int delay;
+
+    public Board Board
+    {
+        get => board;
+        set => board = value;
+    }
+
+    public int Delay
+    {
+        get => delay;
+        set => delay = value;
+    }
 
     public PrintBoard(Board board, int delay = 350)
     {
-        _board = board;   // _board sera lo que reciba de board.
-        _delay = delay;   // _delay esta definido en la funcion PrintBoard, tiene un valor entero.
+        this.board = board;   // _board sera lo que reciba de board.
+        this.delay = delay;   // _delay esta definido en la funcion PrintBoard, tiene un valor entero.
     }
 
-    public void Start()
+    public static void Print(Board board)
     {
-        while (true)
-        {
-            Console.Clear();
-            Print();
-
-            _board.NewGeneration();
-
-            Thread.Sleep(_delay);
-        }
-    }
-
-    private void Print()
-    {
-        int width = _board.Width;
-        int height = _board.Height;
+        int width = board.GetLength(0);
+        int height = board.GetLength(1);
         StringBuilder s = new StringBuilder();
 
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                if (_board.GetCell(x, y))
+                if (board.GetCellValue(x, y))
                 {
                     s.Append("|X|");
                 }

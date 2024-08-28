@@ -1,15 +1,16 @@
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace Ucu.Poo.GameOfLife;
 
 public class FileReader
 {
-    private string url = "/home/jwillmore/Nextcloud/univ/2semestre/prog2/proyectos/PII_Game_Of_Life/assets/board.txt";
-
-    public Board ReturnBoard()
+    
+    public static Board ReturnBoard()
     {
-        string content = File.ReadAllText(this.url);
+        string content = File.ReadAllText("board.txt");
         string[] contentLines = content.Split('\n');
         Board board = new Board(contentLines.Length, contentLines[0].Length);
         
