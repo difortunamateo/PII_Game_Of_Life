@@ -14,5 +14,18 @@ public class Board
         set { this.cellState= value; }
     }
 
+    public int GetLenght(int num)
+    {
+        return CellState.GetLength(num);
+    }
 
+    public bool GetCellValue(int i, int j)
+    {
+        return CellState[i, j];
+    }
+
+    public void SetCellValue(int i, int j, bool value)
+    {
+        this.cellState[i, j] = value;
+    }
 }
