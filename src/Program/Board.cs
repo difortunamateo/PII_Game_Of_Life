@@ -3,7 +3,6 @@ namespace Ucu.Poo.GameOfLife;
 public class Board
 {
     
-    
     // Lista de booleanos con el estado del tablero
     private bool[,] cellState;
 
@@ -11,7 +10,7 @@ public class Board
     {
         get { return cellState; }
 
-        set { this.cellState= value; }
+        set { this.cellState = value; }
     }
 
     public int GetLenght(int num)
