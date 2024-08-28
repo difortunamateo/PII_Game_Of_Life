@@ -14,7 +14,7 @@ public class Board
         set { this.cellState= value; }
     }
 
-    public int GetLenght(int num)
+    public int GetLength(int num)
     {
         return CellState.GetLength(num);
     }
