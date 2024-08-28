@@ -4,7 +4,7 @@
     {
         public static bool[,] NewGeneration()
         {
-            bool[,] gameBoard = Board.CellState();
+            bool[,] gameBoard = Board.GetCellState();
             int boardWidth = Board.GetLength(0);
             int boardHeight = Board.GetLength(1);
 
