@@ -2,41 +2,49 @@
 {
     class Logic
     {
-        public static bool[,] NewGeneration()
+        public static void NewGeneration(Board board)
         {
-            bool[,] gameBoard = Board.GetCellState();
-            int boardWidth = Board.GetLength(0);
-            int boardHeight = Board.GetLength(1);
+            int boardWidth = board.GetLength(0);
+            int boardHeight = board.GetLength(1);
 
             bool[,] cloneboard = new bool[boardWidth, boardHeight];
             for (int x = 0; x < boardWidth; x++)
             {
                 for (int y = 0; y < boardHeight; y++)
                 {
-                    int aliveNeighbors = CountAliveNeighbors(gameBoard, x, y, boardWidth, boardHeight);
-                    cloneboard[x, y] = DetermineNextState(gameBoard[x, y], aliveNeighbors);
+                    int aliveNeighbors = CountAliveNeighbors(board, x, y, boardWidth, boardHeight);
+                    cloneboard[x, y] = DetermineNextState(board.GetCellValue(x, y), aliveNeighbors);
                 }
             }
-            return cloneboard;
+
+            for (int x = 0; x < boardWidth; x++)
+            {
+                for (int y = 0; y < boardHeight; y++)
+                {
+                    board.SetCellValue(x, y, cloneboard[x, y]);
+                }
+            }
         }
 
-        private static int CountAliveNeighbors(bool[,] board, int x, int y, int width, int height)
+        private static int CountAliveNeighbors(Board board, int x, int y, int width, int height)
         {
             int aliveNeighbors = 0;
             for (int i = x - 1; i <= x + 1; i++)
             {
                 for (int j = y - 1; j <= y + 1; j++)
                 {
-                    if (i >= 0 && i < width && j >= 0 && j < height && board[i, j])
+                    if (i >= 0 && i < width && j >= 0 && j < height && board.GetCellValue(i, j))
                     {
                         aliveNeighbors++;
                     }
                 }
             }
-            if (board[x, y])
+
+            if (board.GetCellValue(x, y))
             {
                 aliveNeighbors--;
             }
+
             return aliveNeighbors;
         }
 
@@ -44,7 +52,7 @@
         {
             if (currentState && aliveNeighbors < 2)
             {
-                return false; // Célula muere por baja población
+                return false; // Célula muere por soledad
             }
             else if (currentState && aliveNeighbors > 3)
             {
@@ -56,7 +64,7 @@
             }
             else
             {
-                return currentState; // Célula mantiene el estado que tenía
+                return currentState; // Célula mantiene su estado actual
             }
         }
     }
