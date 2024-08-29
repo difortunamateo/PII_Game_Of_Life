@@ -2,10 +2,8 @@ namespace Ucu.Poo.GameOfLife;
 
 public class Board
 {
-    // Lista de booleanos con el estado del tablero
     private bool[,] CellState;
-    
-    // Constructor de la clase Board
+
     public Board(int width, int height)
     {
         CellState = new bool[width, height];

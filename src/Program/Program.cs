@@ -12,7 +12,7 @@ namespace Ucu.Poo.GameOfLife
             {
                 Console.Clear();
                 PrintBoard.Print(board);
-                
+
                 Thread.Sleep(350);
                 Logic.NewGeneration(board);
             }
